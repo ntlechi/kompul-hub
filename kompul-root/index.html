@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kompul - Your Financial Command Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -33,44 +33,247 @@
         .btn-secondary:hover {
             background-color: #374151;
         }
+
+        /* --- TESTIMONIAL SCROLLER --- */
+        .scroller {
+            max-width: 90%;
+            margin: auto;
+            mask-image: linear-gradient(
+                to right,
+                transparent,
+                #000 10%,
+                #000 90%,
+                transparent
+            );
+        }
+        .scroller__inner {
+            display: flex;
+            gap: 1.5rem; /* 24px */
+            padding-block: 1.5rem; /* 24px */
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        .scroller:hover .scroller__inner {
+            animation-play-state: paused;
+        }
+        @keyframes scroll {
+            to {
+                transform: translate(calc(-50% - 0.75rem)); /* 50% + half the gap */
+            }
+        }
+        .testimonial-card {
+            background-color: #1F2937; /* Content BG */
+            border: 1px solid #374151; /* Card Border */
+            border-radius: 0.75rem; /* 12px */
+            padding: 1.5rem; /* 24px */
+            width: 350px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- BILINGUAL SWITCHER --- */
+        [data-lang] { display: none; }
+        [data-lang].active { display: block; }
+        [data-lang-inline] { display: none; }
+        [data-lang-inline].active { display: inline; }
+
+        .lang-switcher {
+            position: absolute;
+            top: 1.5rem; /* 24px */
+            right: 1.5rem; /* 24px */
+            background-color: #1F2937;
+            border: 1px solid #374151;
+            border-radius: 99px;
+            padding: 0.25rem;
+            display: flex;
+            gap: 0.25rem;
+        }
+        .lang-switcher button {
+            padding: 0.25rem 0.75rem; /* 4px 12px */
+            border-radius: 99px;
+            font-size: 0.875rem; /* 14px */
+            font-weight: 600;
+            color: #E5E7EB;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .lang-switcher button.active {
+            background-color: #F59E0B;
+            color: #111827;
+        }
+        .lang-switcher button:not(.active):hover {
+            border-color: #374151;
+        }
+
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-6">
-    <div class="text-center max-w-lg mx-auto">
+
+    <!-- === LANGUAGE SWITCHER === -->
+    <div class="lang-switcher">
+        <button id="lang-en" onclick="setLanguage('en')">EN</button>
+        <button id="lang-fr" onclick="setLanguage('fr')">FR</button>
+    </div>
+
+    <div class="text-center max-w-4xl mx-auto pt-16 md:pt-0">
         
-        <!-- 
-          OPERATOR'S NOTE: 
-          You MUST replace this 'src' with a direct URL to your logo.
-          Upload your 'LoGo App - OG.png' to your WordPress Media Library
-          at survivebackpacking.com and paste the URL here.
-        -->
-        <img src="https://survivebackpacking.com/wp-content/uploads/2025/10/500x500.png" 
+        <!-- Logo -->
+        <img src="https://placehold.co/150x150/111827/F59E0B?text=Kompul&font=inter" 
              alt="Kompul Logo" 
              class="h-20 w-auto mx-auto mb-8" 
              onerror="this.src='https://placehold.co/150x150/111827/F59E0B?text=Kompul&font=inter'; this.onerror=null;">
         
-        <h1 class="text-4xl font-bold text-white mb-4">Welcome to Kompul.</h1>
-        <p class="text-lg text-gray-300 mb-10">
+        <!-- Bilingual: Headline -->
+        <h1 data-lang="en" class="text-4xl lg:text-5xl font-bold text-white mb-4">Welcome to Kompul.</h1>
+        <h1 data-lang="fr" class="text-4xl lg:text-5xl font-bold text-white mb-4">Bienvenue chez Kompul.</h1>
+        
+        <!-- Bilingual: Sub-headline -->
+        <p data-lang="en" class="text-lg text-gray-300 mb-12">
             You've found the central hub for the Kompul ecosystem. Select your destination.
         </p>
+        <p data-lang="fr" class="text-lg text-gray-300 mb-12">
+            Vous avez trouvé le hub central de l'écosystème Kompul. Sélectionnez votre destination.
+        </p>
 
-        <div classs="space-y-4">
+        <!-- Main Hub Links -->
+        <div class="space-y-4 max-w-lg mx-auto">
             <!-- Link to the App -->
             <a href="https://app.kompul.com" class="btn-primary py-4 px-6 w-full block text-lg">
-                Launch the App
+                <span data-lang-inline="en">Launch the App</span>
+                <span data-lang-inline="fr">Lancer l'application</span>
                 <span class="block text-sm font-normal opacity-75">(app.kompul.com)</span>
             </a>
             
             <!-- Link to the Story/Brand -->
             <a href="https://survivebackpacking.com" class="btn-secondary py-4 px-6 w-full block text-lg mt-4">
-                The Mission: Survive Backpacking
+                <span data-lang-inline="en">The Mission & Philosophy</span>
+                <span data-lang-inline="fr">La Mission & Philosophie</span>
                 <span class="block text-sm font-normal opacity-75">(survivebackpacking.com)</span>
             </a>
         </div>
 
-        <p class="text-xs text-gray-500 mt-12">
-            Kompul is a privacy-first, trilingual financial freedom platform.
+        <!-- === "SOCIAL PROOF ENGINE" (V4 - REAL TESTIMONIALS) === -->
+        <div class="mt-24">
+            <!-- Bilingual: Testimonial Headline -->
+            <h2 data-lang="en" class="text-2xl font-semibold text-white mb-4">Words from the Mission</h2>
+            <h2 data-lang="fr" class="text-2xl font-semibold text-white mb-4">Paroles de la mission</h2>
+
+            <div class="scroller" data-speed="slow">
+                <ul class="scroller__inner">
+                    <!-- REAL TESTIMONIAL 1 -->
+                    <li class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 mb-4">"Inspirational, effective and life changing in every way! If you need support in finance, relations, happiness or positivity – this is a great place to start."</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Inspirant, efficace et change la vie à tous points de vue ! Si vous avez besoin de soutien en finance, relations, bonheur ou positivité – c'est un excellent point de départ."</p>
+                        <p class="font-bold text-white">Viviane Schickle, C. Creator & Traveler</p>
+                    </li>
+                    <!-- REAL TESTIMONIAL 2 -->
+                    <li class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 mb-4">"This book helped me reflect on my past decisions and motivated me to be more decisive. A great read… motivated me to be more decisive in achieving my goals."</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Ce livre m'a aidé à réfléchir sur mes décisions passées et m'a motivé à être plus décisif. Une excellente lecture… m'a motivé à être plus décisif pour atteindre mes objectifs."</p>
+                        <p class="font-bold text-white">Didier Rudakenga, Eng. MBA</p>
+                    </li>
+                    <!-- REAL TESTIMONIAL 3 -->
+                    <li class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 mb-4">"Wow 🤩 what amazing work you’ve done! ...it’s authentic, real, and there are great tools to help other people. Bravo!😊"</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Wow 🤩 quel travail incroyable tu as fait ! ...c'est authentique, réel, et il y a de super outils pour aider les autres. Bravo !😊"</p>
+                        <p class="font-bold text-white">Katherine Sutherland, Traveler</p>
+                    </li>
+                    <!-- REAL TESTIMONIAL 4 -->
+                    <li class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 mb-4">"Your book is a beautiful proof of your strength and courage. You’ve turned a difficult challenge into a simple, motivating, and inspiring message."</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Ton livre est une belle preuve de ta force et de ton courage. Tu as transformé un défi difficile en un message simple, motivant et inspirant."</p>
+                        <p class="font-bold text-white">Mayssa B.</p>
+                    </li>
+                    <!-- REAL TESTIMONIAL 5 -->
+                    <li class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 mb-4">"Written simply but straight to the point! Everybody can relate."</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Écrit simplement mais droit au but ! Tout le monde peut s'y reconnaître."</p>
+                        <p class="font-bold text-white">Annie Phonsamreth, Editor</p>
+                    </li>
+
+                    <!-- DUPLICATE SET FOR SEAMLESS LOOP -->
+                    <li class="testimonial-card text-left" aria-hidden="true">
+                        <p data-lang="en" class="text-gray-300 mb-4">"Inspirational, effective and life changing in every way! If you need support in finance, relations, happiness or positivity – this is a great place to start."</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Inspirant, efficace et change la vie à tous points de vue ! Si vous avez besoin de soutien en finance, relations, bonheur ou positivité – c'est un excellent point de départ."</p>
+                        <p class="font-bold text-white">Viviane Schickle, C. Creator & Traveler</p>
+                    </li>
+                    <li class="testimonial-card text-left" aria-hidden="true">
+                        <p data-lang="en" class="text-gray-300 mb-4">"This book helped me reflect on my past decisions and motivated me to be more decisive. A great read… motivated me to be more decisive in achieving my goals."</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Ce livre m'a aidé à réfléchir sur mes décisions passées et m'a motivé à être plus décisif. Une excellente lecture… m'a motivé à être plus décisif pour atteindre mes objectifs."</p>
+                        <p class="font-bold text-white">Didier Rudakenga, Eng. MBA</p>
+                    </li>
+                    <li class="testimonial-card text-left" aria-hidden="true">
+                        <p data-lang="en" class="text-gray-300 mb-4">"Wow 🤩 what amazing work you’ve done! ...it’s authentic, real, and there are great tools to help other people. Bravo!😊"</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Wow 🤩 quel travail incroyable tu as fait ! ...c'est authentique, réel, et il y a de super outils pour aider les autres. Bravo !😊"</p>
+                        <p class="font-bold text-white">Katherine Sutherland, Traveler</p>
+                    </li>
+                    <li class="testimonial-card text-left" aria-hidden="true">
+                        <p data-lang="en" class="text-gray-300 mb-4">"Your book is a beautiful proof of your strength and courage. You’ve turned a difficult challenge into a simple, motivating, and inspiring message."</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Ton livre est une belle preuve de ta force et de ton courage. Tu as transformé un défi difficile en un message simple, motivant et inspirant."</p>
+                        <p class="font-bold text-white">Mayssa B.</p>
+                    </li>
+                    <li class="testimonial-card text-left" aria-hidden="true">
+                        <p data-lang="en" class="text-gray-300 mb-4">"Written simply but straight to the point! Everybody can relate."</p>
+                        <p data-lang="fr" class="text-gray-300 mb-4">"Écrit simplement mais droit au but ! Tout le monde peut s'y reconnaître."</p>
+                        <p class="font-bold text-white">Annie Phonsamreth, Editor</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- === END: "SOCIAL PROOF ENGINE" === -->
+
+        <!-- Bilingual: Footer Tagline -->
+        <p data-lang="en" class="text-xs text-gray-500 mt-16">
+            Kompul, Inc. is a 'Fait au Québec' company. 🇨🇦
         </p>
+        <p data-lang="fr" class="text-xs text-gray-500 mt-16">
+            Kompul Inc. est une entreprise 'Fait au Québec'. 🇨🇦
+        </p>
+
     </div>
+
+    <!-- === BILINGUAL SCRIPT === -->
+    <script>
+        // 1. Define the default language
+        let currentLang = 'en';
+
+        // 2. Get the user's browser language
+        const userLang = navigator.language || navigator.userLanguage; 
+
+        // 3. Auto-detect and set French for our primary target market
+        if (userLang.startsWith('fr')) {
+            currentLang = 'fr';
+        }
+
+        // 4. Function to set the active language
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Toggle active state for buttons
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
+
+            // Show/hide block content
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+            });
+
+            // Show/hide inline content
+            document.querySelectorAll('[data-lang-inline]').forEach(el => {
+                el.classList.toggle('active', el.getAttribute('data-lang-inline') === lang);
+            });
+
+            // Optional: Store preference
+            // localStorage.setItem('kompul-lang', lang);
+        }
+
+        // 5. Run the function on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Optional: Check if user has a saved preference
+            // const savedLang = localStorage.getItem('kompul-lang');
+            // setLanguage(savedLang || currentLang);
+            
+            setLanguage(currentLang); // Run auto-detection
+        });
+    </script>
 </body>
 </html>
