@@ -77,6 +77,11 @@
             animation-play-state: paused;
         }
 
+        /* Pause animation when touched (mobile) */
+        .scroller__inner.paused {
+            animation-play-state: paused;
+        }
+
         @keyframes scroll {
             to {
                 transform: translate(calc(-50% - 0.5rem)); /* Adjusted for smaller gap */
@@ -230,8 +235,8 @@
             <h2 data-lang="en" class="text-xl sm:text-2xl font-semibold text-white mb-3 sm:mb-4">Words from the Mission</h2>
             <h2 data-lang="fr" class="text-xl sm:text-2xl font-semibold text-white mb-3 sm:mb-4">Paroles de la mission</h2>
 
-            <div class="scroller" data-speed="slow">
-                <ul class="scroller__inner">
+            <div class="scroller" data-speed="slow" id="testimonial-scroller">
+                <ul class="scroller__inner" id="scroller-inner">
                     <!-- REAL TESTIMONIAL 1 -->
                     <li class="testimonial-card text-left">
                         <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Inspirational, effective and life changing in every way! If you need support in finance, relations, happiness or positivity – this is a great place to start."</p>
@@ -302,9 +307,9 @@
         </div>
         <!-- === END: "SOCIAL PROOF ENGINE" === -->
 
-        <!-- Bilingual: Footer Tagline -->
+        <!-- Footer Copyright -->
         <p data-lang="en" class="text-xs text-gray-500 mt-12 sm:mt-16 px-4 flex items-center justify-center gap-2">
-            Kompul, Inc. is a 'Fait au Québec' company. 
+            © 2025 Kompul. All rights reserved.
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flag_of_Quebec.svg/20px-Flag_of_Quebec.svg.png" 
                  alt="Quebec Flag" 
                  class="inline-block h-4 w-auto" 
@@ -312,7 +317,7 @@
             <span>🇨🇦</span>
         </p>
         <p data-lang="fr" class="text-xs text-gray-500 mt-12 sm:mt-16 px-4 flex items-center justify-center gap-2">
-            Kompul Inc. est une entreprise 'Fait au Québec'. 
+            © 2025 Kompul. Tous droits réservés.
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flag_of_Quebec.svg/20px-Flag_of_Quebec.svg.png" 
                  alt="Drapeau du Québec" 
                  class="inline-block h-4 w-auto" 
@@ -363,6 +368,27 @@
             // setLanguage(savedLang || currentLang);
             
             setLanguage(currentLang); // Run auto-detection
+
+            // 6. Handle touch events for testimonial scroller (mobile)
+            const scroller = document.getElementById('testimonial-scroller');
+            const scrollerInner = document.getElementById('scroller-inner');
+            
+            if (scroller && scrollerInner) {
+                // Pause on touch start
+                scroller.addEventListener('touchstart', () => {
+                    scrollerInner.classList.add('paused');
+                });
+                
+                // Resume on touch end
+                scroller.addEventListener('touchend', () => {
+                    scrollerInner.classList.remove('paused');
+                });
+                
+                // Also handle touch cancel (if user swipes away)
+                scroller.addEventListener('touchcancel', () => {
+                    scrollerInner.classList.remove('paused');
+                });
+            }
         });
     </script>
 </body>
