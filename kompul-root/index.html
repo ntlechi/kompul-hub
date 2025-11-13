@@ -59,6 +59,7 @@
             display: flex;
             justify-content: center;
             gap: 1rem; /* gap-4 */
+            flex-wrap: wrap; /* Pour les petits écrans */
         }
         .region-footer a {
             text-decoration: underline;
@@ -117,9 +118,16 @@
         <div class="mt-16 sm:mt-24 px-4">
             <div class="scroller" data-speed="slow" id="testimonial-scroller">
                  <ul class="scroller__inner" id="scroller-inner">
-                    <li class="testimonial-card text-left">...</li>
-                    <li class="testimonial-card text-left">...</li>
-                    <li class="testimonial-card text-left">...</li>
+                    <li class="testimonial-card text-left">
+                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Inspirational, effective and life changing in every way! If you need support in finance, relations, happiness or positivity – this is a great place to start."</p>
+                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Inspirant, efficace et change la vie à tous points de vue ! Si vous avez besoin de soutien en finance, relations, bonheur ou positivité – c'est un excellent point de départ."</p>
+                        <p class="font-bold text-white text-sm sm:text-base">Viviane Schickle, C. Creator & Traveler</p>
+                    </li>
+                    <li class="testimonial-card text-left">
+                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"This book helped me reflect on my past decisions and motivated me to be more decisive. A great read… motivated me to be more decisive in achieving my goals."</p>
+                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Ce livre m'a aidé à réfléchir sur mes décisions passées et m'a motivé à être plus décisif. Une excellente lecture… m'a motivé à être plus décisif pour atteindre mes objectifs."</p>
+                        <p class="font-bold text-white text-sm sm:text-base">Didier Rudakenga, Eng. MBA</p>
+                    </li>
                     </ul>
             </div>
         </div>
@@ -131,20 +139,20 @@
         </p>
 
         <div class="region-footer">
-            <p data-lang="en">Region: <strong>🌎 Global</strong></p>
-            <p data-lang="fr">Région : <strong>🌎 Global</strong></p>
+            <p data-lang="en">Region:</p>
+            <p data-lang="fr">Région :</p>
             
             <div class="links">
                 <a href="[URL_DE_VOTRE_PAGE_EN_CAD]">
-                    <span data-lang-inline="en">🇨🇦 Canada (English)</span>
-                    <span data-lang-inline="fr">🇨🇦 Canada (English)</span>
+                    <span data-lang-inline="en">🇨🇦 English (Canada)</span>
+                    <span data-lang-inline="fr">🇨🇦 English (Canada)</span>
                 </a>
 
                 <span class="text-gray-600">|</span>
 
                 <a href="[URL_DE_VOTRE_PAGE_FR_CAD]">
-                    <span data-lang-inline="en">🇨🇦 Canada (Français)</span>
-                    <span data-lang-inline="fr">🇨🇦 Canada (Français)</span>
+                    <span data-lang-inline="en">🇨🇦 Français (Canada)</span>
+                    <span data-lang-inline="fr">🇨🇦 Français (Canada)</span>
                 </a>
             </div>
         </div>
@@ -203,8 +211,8 @@
             if (lang === 'fr') {
                 appBtn.href = destinations.fr.app;
                 missionBtn.href = destinations.fr.mission;
-                appSubtext.textContent = '(survivebackpacking.com/fr-01)'; // (Optionnel)
-                missionSubtext.textContent = '(survivebackpacking.com/fr-01)'; // (Optionnel)
+                appSubtext.textContent = '(survivebackpacking.com/fr-01)'; // (Optionnel, vous pouvez changer cela)
+                missionSubtext.textContent = '(survivebackpacking.com/fr-01)'; // (Optionnel, vous pouvez changer cela)
             } else {
                 appBtn.href = destinations.en.app;
                 missionBtn.href = destinations.en.mission;
