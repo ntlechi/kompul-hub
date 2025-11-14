@@ -327,10 +327,10 @@
 
         <!-- Footer Copyright -->
         <p data-lang="en" class="text-xs text-gray-500 mt-12 sm:mt-16 px-4 text-center">
-            © 2025 Kompul. All rights reserved.
+            🇨🇦 © 2025 Kompul. All rights reserved. 🇨🇦
         </p>
         <p data-lang="fr" class="text-xs text-gray-500 mt-12 sm:mt-16 px-4 text-center">
-            © 2025 Kompul. Tous droits réservés.
+            🇨🇦 © 2025 Kompul. Tous droits réservés. 🇨🇦
         </p>
     </div>
 
@@ -348,15 +348,14 @@
         }
 
         // 4a. Define destinations for different languages
-        // EDIT THESE URLs TO YOUR FRENCH LANDING PAGES
         const destinations = {
             en: {
                 app: 'https://app.kompul.com',
                 mission: 'https://survivebackpacking.com'
             },
             fr: {
-                app: 'https://app.kompul.com', // Keep app URL same, or change if you have FR app version
-                mission: 'https://survivebackpacking.com/fr-01/' // EDIT THIS: Your French landing page URL
+                app: 'https://app.kompul.com?lang=fr&signup=true', // French signup page with language detection
+                mission: 'https://survivebackpacking.com/fr-01/' // French landing page URL
             }
         };
 
