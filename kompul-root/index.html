@@ -195,24 +195,34 @@
             
             <p data-lang="en" class="mb-4">© 2025 Kompul. Built in Québec ⚜️</p>
             <p data-lang="fr" class="mb-4">© 2025 Kompul. Bâti au Québec ⚜️</p>
+
+            <div class="flex justify-center gap-4 sm:gap-6 mb-6 font-bold text-gray-400 flex-wrap">
+                <a href="https://survivebackpacking.com/frqc/" class="hover:text-amber-500 transition-colors flex items-center gap-1">
+                    🇨🇦 Québec (FR)
+                </a>
+                <span class="text-gray-700">|</span>
+                <a href="https://survivebackpacking.com/en-cad/" class="hover:text-amber-500 transition-colors flex items-center gap-1">
+                    🇨🇦 Canada (EN)
+                </a>
+                <span class="text-gray-700">|</span>
+                <a href="https://survivebackpacking.com/global/" class="hover:text-amber-500 transition-colors flex items-center gap-1">
+                    🌎 Global (USD)
+                </a>
+            </div>
             
             <div class="flex justify-center gap-4 sm:gap-6 opacity-60 hover:opacity-100 transition-opacity">
-                
                 <a id="link-privacy" href="https://survivebackpacking.com/politique-de-confidentialite/" class="hover:text-amber-500 transition-colors">
                     <span data-lang-inline="en">Privacy Policy</span>
                     <span data-lang-inline="fr">Politique de Confidentialité</span>
                 </a>
-                
                 <a id="link-terms" href="https://survivebackpacking.com/conditions-dutilisation/" class="hover:text-amber-500 transition-colors">
                     <span data-lang-inline="en">Terms of Service</span>
                     <span data-lang-inline="fr">Conditions d'Utilisation</span>
                 </a>
-                
                 <a id="link-disclaimer" href="https://survivebackpacking.com/avis-de-non-responsabilite/" class="hover:text-amber-500 transition-colors">
                     <span data-lang-inline="en">Disclaimer</span>
                     <span data-lang-inline="fr">Avis de Non-Responsabilité</span>
                 </a>
-
             </div>
 
         </footer>
@@ -220,13 +230,13 @@
     </div>
 
     <script>
-        let currentLang = 'fr'; // Default is French
+        let currentLang = 'fr'; // DEFAULT IS NOW FRENCH
         const userLang = navigator.language || navigator.userLanguage;
 
-        // Destinations (Corrected Links)
-        const destinations = {
+        // Destinations
+        const links = {
             en: { 
-                app: 'https://app.kompul.com?signup=true', 
+                app: 'https://app.kompul.com?signup=true&lang=en', 
                 mission: 'https://survivebackpacking.com/global/',
                 privacy: 'https://survivebackpacking.com/privacy-policy/',
                 terms: 'https://survivebackpacking.com/terms-of-service/',
@@ -257,18 +267,18 @@
             });
 
             // Update Main Buttons
-            document.getElementById('btn-launch-app').href = destinations[lang].app;
-            document.getElementById('btn-mission').href = destinations[lang].mission;
+            document.getElementById('btn-launch-app').href = links[lang].app;
+            document.getElementById('btn-mission').href = links[lang].mission;
 
             // Update Legal Links
-            document.getElementById('link-privacy').href = destinations[lang].privacy;
-            document.getElementById('link-terms').href = destinations[lang].terms;
-            document.getElementById('link-disclaimer').href = destinations[lang].disclaimer;
+            document.getElementById('link-privacy').href = links[lang].privacy;
+            document.getElementById('link-terms').href = links[lang].terms;
+            document.getElementById('link-disclaimer').href = links[lang].disclaimer;
         }
 
         // INITIALIZATION LOGIC (Quebec First)
-        // If browser is English -> English. 
-        // For EVERYTHING else (French, Spanish, etc.) -> Default to French.
+        // Only use English if browser is STRICTLY English. 
+        // For everyone else, show French.
         if (userLang.startsWith('en')) { 
             setLanguage('en'); 
         } else { 
