@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kompul - Your Intelligent Financial Autobiography</title>
+    <title>Kompul - Votre Autobiographie Financière Intelligente</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -98,8 +98,8 @@
 <body class="flex items-center justify-center min-h-screen p-4 relative overflow-x-hidden">
 
     <div class="lang-switcher">
-        <button class="lang-btn" id="lang-en" onclick="setLanguage('en')">EN</button>
         <button class="lang-btn" id="lang-fr" onclick="setLanguage('fr')">FR</button>
+        <button class="lang-btn" id="lang-en" onclick="setLanguage('en')">EN</button>
     </div>
 
     <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-amber-500/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
@@ -122,7 +122,7 @@
             Stop tracking numbers. Start writing your story. Connect money, emotions, and history in one secure cockpit.
         </p>
         <p data-lang="fr" class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Arrêtez de suivre des chiffres. Commencez à écrire votre histoire. Connectez argent, émotions et parcours dans un cockpit sécurisé.
+            Arrêtez de suivre des chiffres. Commencez à écrire votre histoire. Connectez argent, émotions et parcours dans un poste de pilotage sécurisé.
         </p>
 
         <div class="mb-12 max-w-2xl mx-auto bg-gradient-to-b from-amber-500/10 to-transparent border border-amber-500/30 rounded-2xl p-6 md:p-8 relative overflow-hidden">
@@ -141,13 +141,13 @@
         </div>
 
         <div class="space-y-4 max-w-md mx-auto mb-20">
-            <a id="btn-launch-app" href="https://app.kompul.com" class="btn-primary py-4 px-8 w-full block text-lg flex items-center justify-center gap-2 group">
+            <a id="btn-launch-app" href="https://app.kompul.com?lang=fr&signup=true" class="btn-primary py-4 px-8 w-full block text-lg flex items-center justify-center gap-2 group">
                 <span data-lang-inline="en">Start Your Autobiography (Free)</span>
                 <span data-lang-inline="fr">Commencer (Gratuit)</span>
                 <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
             </a>
             
-            <a id="btn-mission" href="https://survivebackpacking.com/gta-early/" class="btn-secondary py-4 px-8 w-full block text-lg">
+            <a id="btn-mission" href="https://survivebackpacking.com/frqc/" class="btn-secondary py-4 px-8 w-full block text-lg">
                 <span data-lang-inline="en">Read the Mission Briefing</span>
                 <span data-lang-inline="fr">Lire le Briefing de Mission</span>
             </a>
@@ -192,94 +192,53 @@
         </div>
 
         <footer class="border-t border-gray-800 pt-8 mt-12 text-xs text-gray-500">
-    
-    <p data-lang="en" class="mb-4">© 2025 Kompul. Built in Québec ⚜️</p>
-    <p data-lang="fr" class="mb-4">© 2025 Kompul. Bâti au Québec ⚜️</p>
-    
-    <div class="flex justify-center gap-4 sm:gap-6 opacity-60 hover:opacity-100 transition-opacity">
-        
-        <a id="link-privacy" href="https://survivebackpacking.com/privacy-policy/" class="hover:text-amber-500 transition-colors">
-            <span data-lang-inline="en">Privacy Policy</span>
-            <span data-lang-inline="fr">Politique de Confidentialité</span>
-        </a>
-        
-        <a id="link-terms" href="https://survivebackpacking.com/terms-of-service/" class="hover:text-amber-500 transition-colors">
-            <span data-lang-inline="en">Terms of Service</span>
-            <span data-lang-inline="fr">Conditions d'Utilisation</span>
-        </a>
-        
-        <a id="link-disclaimer" href="https://survivebackpacking.com/disclaimer/" class="hover:text-amber-500 transition-colors">
-            <span data-lang-inline="en">Disclaimer</span>
-            <span data-lang-inline="fr">Avis de Non-Responsabilité</span>
-        </a>
+            
+            <p data-lang="en" class="mb-4">© 2025 Kompul. Built in Québec ⚜️</p>
+            <p data-lang="fr" class="mb-4">© 2025 Kompul. Bâti au Québec ⚜️</p>
+            
+            <div class="flex justify-center gap-4 sm:gap-6 opacity-60 hover:opacity-100 transition-opacity">
+                
+                <a id="link-privacy" href="https://survivebackpacking.com/politique-de-confidentialite/" class="hover:text-amber-500 transition-colors">
+                    <span data-lang-inline="en">Privacy Policy</span>
+                    <span data-lang-inline="fr">Politique de Confidentialité</span>
+                </a>
+                
+                <a id="link-terms" href="https://survivebackpacking.com/conditions-dutilisation/" class="hover:text-amber-500 transition-colors">
+                    <span data-lang-inline="en">Terms of Service</span>
+                    <span data-lang-inline="fr">Conditions d'Utilisation</span>
+                </a>
+                
+                <a id="link-disclaimer" href="https://survivebackpacking.com/avis-de-non-responsabilite/" class="hover:text-amber-500 transition-colors">
+                    <span data-lang-inline="en">Disclaimer</span>
+                    <span data-lang-inline="fr">Avis de Non-Responsabilité</span>
+                </a>
 
-    </div>
+            </div>
 
-</footer>
-
-<script>
-    let currentLang = 'en';
-    const userLang = navigator.language || navigator.userLanguage;
-
-    // 1. YOUR URLS GO HERE (Update the French links!)
-    const destinations = {
-        en: { 
-            app: 'https://app.kompul.com?signup=true', 
-            mission: 'https://survivebackpacking.com/gta-early/',
-            privacy: 'https://survivebackpacking.com/privacy-policy/',
-            terms: 'https://survivebackpacking.com/terms-of-service/',
-            disclaimer: 'https://survivebackpacking.com/disclaimer/'
-        },
-        fr: { 
-            app: 'https://app.kompul.com?lang=fr&signup=true', 
-            mission: 'https://survivebackpacking.com/frqc/',
-            // 👇 PASTE YOUR FRENCH URLS HERE 👇
-            privacy: 'https://survivebackpacking.com/politique-de-confidentialite/', 
-            terms: 'https://survivebackpacking.com/conditions-dutilisation/',
-            disclaimer: 'https://survivebackpacking.com/avis-de-non-responsabilite/'
-        }
-    };
-
-    function setLanguage(lang) {
-        currentLang = lang;
-        
-        // Toggle Buttons
-        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-        document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
-
-        // Toggle Text Content
-        document.querySelectorAll('[data-lang]').forEach(el => {
-            el.classList.toggle('active', el.getAttribute('data-lang') === lang);
-        });
-        document.querySelectorAll('[data-lang-inline]').forEach(el => {
-            el.classList.toggle('active', el.getAttribute('data-lang-inline') === lang);
-        });
-
-        // Update Main Buttons
-        document.getElementById('btn-launch-app').href = destinations[lang].app;
-        document.getElementById('btn-mission').href = destinations[lang].mission;
-
-        // Update Legal Links (Dynamic Switching)
-        document.getElementById('link-privacy').href = destinations[lang].privacy;
-        document.getElementById('link-terms').href = destinations[lang].terms;
-        document.getElementById('link-disclaimer').href = destinations[lang].disclaimer;
-    }
-
-    // Init
-    if (userLang.startsWith('fr')) { setLanguage('fr'); } else { setLanguage('en'); }
-</script>
         </footer>
 
     </div>
 
     <script>
-        let currentLang = 'en';
+        let currentLang = 'fr'; // Default is French
         const userLang = navigator.language || navigator.userLanguage;
 
-        // Destinations
-        const links = {
-            en: { mission: 'https://survivebackpacking.com/global/', app: 'https://app.kompul.com?signup=true' },
-            fr: { mission: 'https://survivebackpacking.com/frqc/', app: 'https://app.kompul.com?lang=fr&signup=true' }
+        // Destinations (Corrected Links)
+        const destinations = {
+            en: { 
+                app: 'https://app.kompul.com?signup=true', 
+                mission: 'https://survivebackpacking.com/global/',
+                privacy: 'https://survivebackpacking.com/privacy-policy/',
+                terms: 'https://survivebackpacking.com/terms-of-service/',
+                disclaimer: 'https://survivebackpacking.com/disclaimer/'
+            },
+            fr: { 
+                app: 'https://app.kompul.com?lang=fr&signup=true', 
+                mission: 'https://survivebackpacking.com/frqc/',
+                privacy: 'https://survivebackpacking.com/politique-de-confidentialite/', 
+                terms: 'https://survivebackpacking.com/conditions-dutilisation/',
+                disclaimer: 'https://survivebackpacking.com/avis-de-non-responsabilite/'
+            }
         };
 
         function setLanguage(lang) {
@@ -297,13 +256,24 @@
                 el.classList.toggle('active', el.getAttribute('data-lang-inline') === lang);
             });
 
-            // Update Links
-            document.getElementById('btn-launch-app').href = links[lang].app;
-            document.getElementById('btn-mission').href = links[lang].mission;
+            // Update Main Buttons
+            document.getElementById('btn-launch-app').href = destinations[lang].app;
+            document.getElementById('btn-mission').href = destinations[lang].mission;
+
+            // Update Legal Links
+            document.getElementById('link-privacy').href = destinations[lang].privacy;
+            document.getElementById('link-terms').href = destinations[lang].terms;
+            document.getElementById('link-disclaimer').href = destinations[lang].disclaimer;
         }
 
-        // Init
-        if (userLang.startsWith('fr')) { setLanguage('fr'); } else { setLanguage('en'); }
+        // INITIALIZATION LOGIC (Quebec First)
+        // If browser is English -> English. 
+        // For EVERYTHING else (French, Spanish, etc.) -> Default to French.
+        if (userLang.startsWith('en')) { 
+            setLanguage('en'); 
+        } else { 
+            setLanguage('fr'); 
+        }
     </script>
 </body>
 </html>
