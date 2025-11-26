@@ -230,60 +230,55 @@
     </div>
 
     <script>
-        let currentLang = 'fr'; // DEFAULT IS NOW FRENCH
-        const userLang = navigator.language || navigator.userLanguage;
-
-        // Destinations
-        const links = {
-            en: { 
-                app: 'https://app.kompul.com?signup=true&lang=en', 
-                mission: 'https://survivebackpacking.com/global/',
-                privacy: 'https://survivebackpacking.com/privacy-policy/',
-                terms: 'https://survivebackpacking.com/terms-of-service/',
-                disclaimer: 'https://survivebackpacking.com/disclaimer/'
-            },
-            fr: { 
-                app: 'https://app.kompul.com?lang=fr&signup=true', 
-                mission: 'https://survivebackpacking.com/frqc/',
-                privacy: 'https://survivebackpacking.com/politique-de-confidentialite/', 
-                terms: 'https://survivebackpacking.com/conditions-dutilisation/',
-                disclaimer: 'https://survivebackpacking.com/avis-de-non-responsabilite/'
-            }
-        };
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            
-            // Toggle Buttons
-            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-            document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
-
-            // Toggle Text Content
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                el.classList.toggle('active', el.getAttribute('data-lang') === lang);
-            });
-            document.querySelectorAll('[data-lang-inline]').forEach(el => {
-                el.classList.toggle('active', el.getAttribute('data-lang-inline') === lang);
-            });
-
-            // Update Main Buttons
-            document.getElementById('btn-launch-app').href = links[lang].app;
-            document.getElementById('btn-mission').href = links[lang].mission;
-
-            // Update Legal Links
-            document.getElementById('link-privacy').href = links[lang].privacy;
-            document.getElementById('link-terms').href = links[lang].terms;
-            document.getElementById('link-disclaimer').href = links[lang].disclaimer;
+    // 1. On force le français par défaut au démarrage
+    let currentLang = 'fr'; 
+    
+    // Destinations (Vos liens)
+    const destinations = {
+        en: { 
+            app: 'https://app.kompul.com?signup=true&lang=en', 
+            mission: 'https://survivebackpacking.com/gta-early/',
+            privacy: 'https://survivebackpacking.com/privacy-policy/',
+            terms: 'https://survivebackpacking.com/terms-of-service/',
+            disclaimer: 'https://survivebackpacking.com/disclaimer/'
+        },
+        fr: { 
+            app: 'https://app.kompul.com?lang=fr&signup=true', 
+            mission: 'https://survivebackpacking.com/frqc/',
+            privacy: 'https://survivebackpacking.com/politique-de-confidentialite/', 
+            terms: 'https://survivebackpacking.com/conditions-dutilisation/',
+            disclaimer: 'https://survivebackpacking.com/avis-de-non-responsabilite/'
         }
+    };
 
-        // INITIALIZATION LOGIC (Quebec First)
-        // Only use English if browser is STRICTLY English. 
-        // For everyone else, show French.
-        if (userLang.startsWith('en')) { 
-            setLanguage('en'); 
-        } else { 
-            setLanguage('fr'); 
-        }
-    </script>
+    function setLanguage(lang) {
+        currentLang = lang;
+        
+        // Toggle Buttons
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+        document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
+
+        // Toggle Text Content
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+        });
+        document.querySelectorAll('[data-lang-inline]').forEach(el => {
+            el.classList.toggle('active', el.getAttribute('data-lang-inline') === lang);
+        });
+
+        // Update Main Buttons
+        document.getElementById('btn-launch-app').href = destinations[lang].app;
+        document.getElementById('btn-mission').href = destinations[lang].mission;
+
+        // Update Legal Links
+        document.getElementById('link-privacy').href = destinations[lang].privacy;
+        document.getElementById('link-terms').href = destinations[lang].terms;
+        document.getElementById('link-disclaimer').href = destinations[lang].disclaimer;
+    }
+
+    // INITIALISATION : ON LANCE DIRECTEMENT EN FRANÇAIS
+    // On ne vérifie plus le navigateur. Le site est francophone par défaut.
+    setLanguage('fr'); 
+</script>
 </body>
 </html>
