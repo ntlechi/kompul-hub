@@ -3,474 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kompul - Your Financial Command Center</title>
+    <title>Kompul - Your Intelligent Financial Autobiography</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Site Background */
-            color: #E5E7EB; /* Body Text */
+            background-color: #0F172A; /* Deep Navy */
+            color: #E5E7EB;
         }
 
+        /* Button Styles */
         .btn-primary {
-            background-color: #F59E0B; /* Accent */
+            background: linear-gradient(to right, #F59E0B, #D97706);
             color: #111827;
-            transition: background-color 0.3s ease;
-            font-weight: 700;
-            border-radius: 0.5rem; /* 8px */
+            transition: all 0.3s ease;
+            font-weight: 800;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.2);
         }
-
         .btn-primary:hover {
-            background-color: #D97706; /* Button Hover */
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(245, 158, 11, 0.3);
         }
 
         .btn-secondary {
-            background-color: #1F2937; /* Content Background */
+            background-color: rgba(31, 41, 55, 0.5);
             color: #E5E7EB;
-            border: 1px solid #374151; /* Card Borders */
-            transition: background-color 0.3s ease;
-            font-weight: 700;
-            border-radius: 0.5rem; /* 8px */
+            border: 1px solid #374151;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border-radius: 0.75rem;
         }
-
         .btn-secondary:hover {
-            background-color: #374151;
+            background-color: rgba(31, 41, 55, 1);
+            border-color: #6B7280;
         }
 
-        /* --- TESTIMONIAL SCROLLER --- */
-        .scroller {
-            max-width: 100%;
-            margin: auto;
-            overflow: hidden;
-            mask-image: linear-gradient(
-                to right,
-                transparent,
-                #000 5%,
-                #000 95%,
-                transparent
-            );
-        }
-
-        /* Mobile: Less aggressive mask for better visibility */
-        @media (max-width: 640px) {
-            .scroller {
-                mask-image: linear-gradient(
-                    to right,
-                    transparent,
-                    #000 2%,
-                    #000 98%,
-                    transparent
-                );
-            }
-        }
-
-        .scroller__inner {
+        /* Lang Switcher */
+        .lang-switcher {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background-color: #1E293B;
+            padding: 4px;
+            border-radius: 9999px;
             display: flex;
-            gap: 1rem; /* Reduced from 1.5rem for mobile */
-            padding-block: 1.5rem; /* 24px */
-            width: max-content;
-            animation: scroll 40s linear infinite;
+            border: 1px solid #334155;
+            z-index: 50;
+        }
+        .lang-btn {
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #94A3B8;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background-color: #F59E0B;
+            color: #111827;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        .scroller:hover .scroller__inner {
-            animation-play-state: paused;
-        }
-
-        /* Pause animation when touched (mobile) */
-        .scroller__inner.paused {
-            animation-play-state: paused;
-        }
-
-        @keyframes scroll {
-            to {
-                transform: translate(calc(-50% - 0.5rem)); /* Adjusted for smaller gap */
-            }
-        }
-
-        .testimonial-card {
-            background-color: #1F2937; /* Content BG */
-            border: 1px solid #374151; /* Card Border */
-            border-radius: 0.75rem; /* 12px */
-            padding: 1.25rem; /* Reduced from 1.5rem for mobile */
-            width: 350px;
-            min-width: 280px; /* Minimum width for mobile */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            flex-shrink: 0; /* Prevent cards from shrinking */
-        }
-
-        /* Mobile: Smaller cards */
-        @media (max-width: 640px) {
-            .testimonial-card {
-                width: 280px;
-                min-width: 280px;
-                padding: 1rem;
-            }
-        }
-
-        /* --- BILINGUAL SWITCHER --- */
+        /* Content Toggling */
         [data-lang] { display: none; }
         [data-lang].active { display: block; }
         [data-lang-inline] { display: none; }
         [data-lang-inline].active { display: inline; }
 
-        .lang-switcher {
-            position: fixed; /* Changed from absolute to fixed for better mobile positioning */
-            top: 1rem; /* Reduced from 1.5rem for mobile */
-            right: 1rem; /* Reduced from 1.5rem for mobile */
-            background-color: #1F2937;
-            border: 1px solid #374151;
-            border-radius: 99px;
-            padding: 0.25rem;
+        /* Scroller Animation */
+        .scroller {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .scroller__inner {
             display: flex;
-            gap: 0.25rem;
-            z-index: 50; /* Ensure it's above other content */
+            gap: 1.5rem;
+            width: max-content;
+            animation: scroll 40s linear infinite;
         }
-
-        /* Mobile: Smaller language switcher */
-        @media (max-width: 640px) {
-            .lang-switcher {
-                top: 0.75rem;
-                right: 0.75rem;
-                padding: 0.2rem;
-            }
+        @keyframes scroll {
+            to { transform: translate(calc(-50% - 0.75rem)); }
         }
-
-        .lang-switcher button {
-            padding: 0.25rem 0.75rem; /* 4px 12px */
-            border-radius: 99px;
-            font-size: 0.875rem; /* 14px */
-            font-weight: 600;
-            color: #E5E7EB;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        /* Mobile: Smaller button text */
-        @media (max-width: 640px) {
-            .lang-switcher button {
-                padding: 0.2rem 0.6rem;
-                font-size: 0.75rem; /* 12px */
-            }
-        }
-
-        .lang-switcher button.active {
-            background-color: #F59E0B;
-            color: #111827;
-        }
-
-        .lang-switcher button:not(.active):hover {
-            border-color: #374151;
-        }
-
-        /* Mobile: Touch-friendly buttons */
-        @media (max-width: 640px) {
-            .btn-primary,
-            .btn-secondary {
-                padding: 1rem 1.5rem; /* Larger touch targets */
-                font-size: 1rem; /* Ensure readable text */
-            }
+        .testimonial-card {
+            background: #1E293B;
+            border: 1px solid #334155;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            width: 320px;
+            flex-shrink: 0;
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4 sm:p-6">
+<body class="flex items-center justify-center min-h-screen p-4 relative overflow-x-hidden">
 
-    <!-- === LANGUAGE SWITCHER === -->
     <div class="lang-switcher">
-        <button id="lang-en" onclick="setLanguage('en')">EN</button>
-        <button id="lang-fr" onclick="setLanguage('fr')">FR</button>
+        <button class="lang-btn" id="lang-en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" id="lang-fr" onclick="setLanguage('fr')">FR</button>
     </div>
 
-    <div class="text-center max-w-4xl mx-auto pt-12 sm:pt-16 md:pt-0 w-full">
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-amber-500/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+    <div class="text-center max-w-5xl mx-auto w-full pt-16 pb-10">
         
-        <!-- Logo -->
         <img src="https://survivebackpacking.com/wp-content/uploads/2025/10/500x500.png" 
              alt="Kompul Logo" 
-             class="h-16 sm:h-20 w-auto mx-auto mb-6 sm:mb-8" 
-             onerror="this.src='https://placehold.co/150x150/111827/F59E0B?text=Kompul&font=inter'; this.onerror=null;">
+             class="h-24 w-auto mx-auto mb-8 drop-shadow-2xl"
+             onerror="this.style.display='none'">
         
-        <!-- Bilingual: Headline -->
-        <h1 data-lang="en" class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 px-4">Welcome to Kompul.</h1>
-        <h1 data-lang="fr" class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 px-4">Bienvenue chez Kompul.</h1>
+        <h1 data-lang="en" class="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">
+            Your Intelligent Financial <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">Autobiography.</span>
+        </h1>
+        <h1 data-lang="fr" class="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">
+            Votre Autobiographie <br>Financière <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">Intelligente.</span>
+        </h1>
         
-        <!-- Bilingual: Sub-headline -->
-        <p data-lang="en" class="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 px-4">
-            You've found the central hub for the Kompul ecosystem. Select your destination.
+        <p data-lang="en" class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Stop tracking numbers. Start writing your story. Connect money, emotions, and history in one secure cockpit.
         </p>
-        <p data-lang="fr" class="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6 px-4">
-            Vous avez trouvé le hub central de l'écosystème Kompul. Sélectionnez votre destination.
+        <p data-lang="fr" class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Arrêtez de suivre des chiffres. Commencez à écrire votre histoire. Connectez argent, émotions et parcours dans un cockpit sécurisé.
         </p>
 
-        <!-- === "FREE FOREVER" VALUE PROPOSITION === -->
-        <div class="mb-8 sm:mb-12 px-4">
-            <p data-lang="en" class="text-lg sm:text-xl font-medium text-gray-200">
-                The essentials for your financial climb are <span class="text-[#F59E0B]">FREE. Forever.</span>
+        <div class="mb-12 max-w-2xl mx-auto bg-gradient-to-b from-amber-500/10 to-transparent border border-amber-500/30 rounded-2xl p-6 md:p-8 relative overflow-hidden">
+            <div class="flex items-center justify-center gap-2 mb-3">
+                <span class="animate-pulse text-amber-400">●</span>
+                <h3 data-lang="en" class="text-amber-400 font-bold uppercase tracking-widest text-sm">Limited Launch Access</h3>
+                <h3 data-lang="fr" class="text-amber-400 font-bold uppercase tracking-widest text-sm">Accès Limité</h3>
+            </div>
+            
+            <p data-lang="en" class="text-lg text-gray-200 font-medium">
+                Join the <strong>Founder's Circle</strong> (First 500). Get <span class="text-white bg-amber-600/20 px-2 py-0.5 rounded">50% Off Lifetime</span> on premium features.
             </p>
-            <p data-lang="fr" class="text-lg sm:text-xl font-medium text-gray-200">
-                L'essentiel pour votre ascension financière est <span class="text-[#F59E0B]">GRATUIT. Pour toujours.</span>
+            <p data-lang="fr" class="text-lg text-gray-200 font-medium">
+                Rejoignez le <strong>Cercle des Fondateurs</strong> (500 premiers). Obtenez <span class="text-white bg-amber-600/20 px-2 py-0.5 rounded">50% de Rabais à Vie</span> sur les fonctions premium.
             </p>
         </div>
-        <!-- === END: "FREE FOREVER" === -->
 
-        <!-- === FOUNDER'S CIRCLE PROMOTION === -->
-        <div class="mb-8 sm:mb-12 px-4 max-w-2xl mx-auto">
-            <div class="bg-gradient-to-r from-[#F59E0B]/10 to-[#D97706]/10 border-2 border-[#F59E0B]/30 rounded-xl p-6 sm:p-8 relative overflow-hidden">
-                <!-- Decorative background pattern -->
-                <div class="absolute inset-0 opacity-5">
-                    <div class="absolute top-0 left-0 w-32 h-32 bg-[#F59E0B] rounded-full blur-3xl"></div>
-                    <div class="absolute bottom-0 right-0 w-40 h-40 bg-[#D97706] rounded-full blur-3xl"></div>
-                </div>
-                
-                <div class="relative z-10">
-                    <!-- Badge/Header -->
-                    <div class="flex items-center justify-center gap-2 mb-4">
-                        <span class="text-[#F59E0B] text-2xl">🏆</span>
-                        <h3 data-lang="en" class="text-xl sm:text-2xl font-bold text-white">
-                            Founder's Circle
-                        </h3>
-                        <h3 data-lang="fr" class="text-xl sm:text-2xl font-bold text-white">
-                            Le Cercle des Fondateurs
-                        </h3>
+        <div class="space-y-4 max-w-md mx-auto mb-20">
+            <a id="btn-launch-app" href="https://app.kompul.com" class="btn-primary py-4 px-8 w-full block text-lg flex items-center justify-center gap-2 group">
+                <span data-lang-inline="en">Start Your Autobiography (Free)</span>
+                <span data-lang-inline="fr">Commencer (Gratuit)</span>
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+            </a>
+            
+            <a id="btn-mission" href="https://survivebackpacking.com/gta-early/" class="btn-secondary py-4 px-8 w-full block text-lg">
+                <span data-lang-inline="en">Read the Mission Briefing</span>
+                <span data-lang-inline="fr">Lire le Briefing de Mission</span>
+            </a>
+            
+            <p data-lang="en" class="text-xs text-gray-500 mt-4">Community Funded • No Data Selling</p>
+            <p data-lang="fr" class="text-xs text-gray-500 mt-4">Financé par la Communauté • Zéro Vente de Données</p>
+        </div>
+
+        <div class="w-full overflow-hidden relative mb-12">
+            <h4 data-lang="en" class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Words from the Mission</h4>
+            <h4 data-lang="fr" class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-6">Paroles de la Mission</h4>
+            
+            <div class="scroller">
+                <div class="scroller__inner">
+                    <div class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 text-sm mb-3">"Inspirational, effective and life changing in every way!"</p>
+                        <p data-lang="fr" class="text-gray-300 text-sm mb-3">"Inspirant, efficace et change la vie à tous points de vue !"</p>
+                        <p class="text-white font-bold text-xs">Viviane S.</p>
                     </div>
-                    
-                    <!-- Main Message -->
-                    <p data-lang="en" class="text-base sm:text-lg text-gray-200 mb-3 leading-relaxed">
-                        We are opening the Founder's Circle to our first <span class="text-[#F59E0B] font-bold">200 believers</span>. 
-                        As a special thank you for joining the mission early, you will receive a <span class="text-[#F59E0B] font-bold">50% lifetime discount</span> on all premium features.
-                    </p>
-                    <p data-lang="fr" class="text-base sm:text-lg text-gray-200 mb-3 leading-relaxed">
-                        Nous ouvrons le "Cercle des Fondateurs" à nos <span class="text-[#F59E0B] font-bold">200 premiers partisans</span>. 
-                        En guise de remerciement spécial pour avoir rejoint la mission à ses débuts, vous recevrez un <span class="text-[#F59E0B] font-bold">rabais à vie de 50%</span> sur toutes les fonctionnalités premium.
-                    </p>
-                    
-                    <!-- Subtext -->
-                    <p data-lang="en" class="text-sm text-gray-400 italic">
-                        Limited time. Join the movement.
-                    </p>
-                    <p data-lang="fr" class="text-sm text-gray-400 italic">
-                        Temps limité. Rejoignez le mouvement.
-                    </p>
+                    <div class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 text-sm mb-3">"Motivated me to be more decisive in achieving my goals."</p>
+                        <p data-lang="fr" class="text-gray-300 text-sm mb-3">"M'a motivé à être plus décisif pour atteindre mes objectifs."</p>
+                        <p class="text-white font-bold text-xs">Didier R. (MBA)</p>
+                    </div>
+                    <div class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 text-sm mb-3">"Authentic, real, great tools to help people."</p>
+                        <p data-lang="fr" class="text-gray-300 text-sm mb-3">"Authentique, réel, des outils géniaux pour aider."</p>
+                        <p class="text-white font-bold text-xs">Katherine S.</p>
+                    </div>
+                     <div class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 text-sm mb-3">"Written simply but straight to the point! Everybody can relate."</p>
+                        <p data-lang="fr" class="text-gray-300 text-sm mb-3">"Écrit simplement mais droit au but ! Tout le monde peut s'y reconnaître."</p>
+                        <p class="text-white font-bold text-xs">Annie P.</p>
+                    </div>
+                    <div class="testimonial-card text-left">
+                        <p data-lang="en" class="text-gray-300 text-sm mb-3">"Inspirational, effective and life changing in every way!"</p>
+                        <p data-lang="fr" class="text-gray-300 text-sm mb-3">"Inspirant, efficace et change la vie à tous points de vue !"</p>
+                        <p class="text-white font-bold text-xs">Viviane S.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- === END: FOUNDER'S CIRCLE PROMOTION === -->
 
-        <!-- Main Hub Links -->
-        <div class="space-y-3 sm:space-y-4 max-w-lg mx-auto px-4">
-            <!-- Link to the App -->
-            <a id="btn-launch-app" href="https://app.kompul.com" class="btn-primary py-3 sm:py-4 px-4 sm:px-6 w-full block text-base sm:text-lg">
-                <span data-lang-inline="en">Launch the App</span>
-                <span data-lang-inline="fr">Lancer l'application</span>
-                <span class="block text-xs sm:text-sm font-normal opacity-75 mt-1">(app.kompul.com)</span>
-            </a>
-            
-            <!-- Link to the Story/Brand -->
-            <a id="btn-mission" href="https://survivebackpacking.com" class="btn-secondary py-3 sm:py-4 px-4 sm:px-6 w-full block text-base sm:text-lg mt-3 sm:mt-4">
-                <span data-lang-inline="en">The Mission & Philosophy</span>
-                <span data-lang-inline="fr">La Mission & Philosophie</span>
-                <span class="block text-xs sm:text-sm font-normal opacity-75 mt-1">(survivebackpacking.com)</span>
-            </a>
-        </div>
+        <footer class="border-t border-gray-800 pt-8 mt-8 text-xs text-gray-500">
+            <p data-lang="en">© 2025 Kompul. Built in Québec ⚜️</p>
+            <p data-lang="fr">© 2025 Kompul. Bâti au Québec ⚜️</p>
+        </footer>
 
-        <!-- === "SOCIAL PROOF ENGINE" (V4 - REAL TESTIMONIALS) === -->
-        <div class="mt-16 sm:mt-24 px-4">
-            <!-- Bilingual: Testimonial Headline -->
-            <h2 data-lang="en" class="text-xl sm:text-2xl font-semibold text-white mb-3 sm:mb-4">Words from the Mission</h2>
-            <h2 data-lang="fr" class="text-xl sm:text-2xl font-semibold text-white mb-3 sm:mb-4">Paroles de la mission</h2>
-
-            <div class="scroller" data-speed="slow" id="testimonial-scroller">
-                <ul class="scroller__inner" id="scroller-inner">
-                    <!-- REAL TESTIMONIAL 1 -->
-                    <li class="testimonial-card text-left">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Inspirational, effective and life changing in every way! If you need support in finance, relations, happiness or positivity – this is a great place to start."</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Inspirant, efficace et change la vie à tous points de vue ! Si vous avez besoin de soutien en finance, relations, bonheur ou positivité – c'est un excellent point de départ."</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Viviane Schickle, C. Creator & Traveler</p>
-                    </li>
-
-                    <!-- REAL TESTIMONIAL 2 -->
-                    <li class="testimonial-card text-left">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"This book helped me reflect on my past decisions and motivated me to be more decisive. A great read… motivated me to be more decisive in achieving my goals."</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Ce livre m'a aidé à réfléchir sur mes décisions passées et m'a motivé à être plus décisif. Une excellente lecture… m'a motivé à être plus décisif pour atteindre mes objectifs."</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Didier Rudakenga, Eng. MBA</p>
-                    </li>
-
-                    <!-- REAL TESTIMONIAL 3 -->
-                    <li class="testimonial-card text-left">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Wow 🤩 what amazing work you've done! ...it's authentic, real, and there are great tools to help other people. Bravo!😊"</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Wow 🤩 quel travail incroyable tu as fait ! ...c'est authentique, réel, et il y a de super outils pour aider les autres. Bravo !😊"</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Katherine Sutherland, Traveler</p>
-                    </li>
-
-                    <!-- REAL TESTIMONIAL 4 -->
-                    <li class="testimonial-card text-left">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Your book is a beautiful proof of your strength and courage. You've turned a difficult challenge into a simple, motivating, and inspiring message."</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Ton livre est une belle preuve de ta force et de ton courage. Tu as transformé un défi difficile en un message simple, motivant et inspirant."</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Mayssa B.</p>
-                    </li>
-
-                    <!-- REAL TESTIMONIAL 5 -->
-                    <li class="testimonial-card text-left">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Written simply but straight to the point! Everybody can relate."</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Écrit simplement mais droit au but ! Tout le monde peut s'y reconnaître."</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Annie Phonsamreth, Editor</p>
-                    </li>
-
-                    <!-- DUPLICATE SET FOR SEAMLESS LOOP -->
-                    <li class="testimonial-card text-left" aria-hidden="true">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Inspirational, effective and life changing in every way! If you need support in finance, relations, happiness or positivity – this is a great place to start."</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Inspirant, efficace et change la vie à tous points de vue ! Si vous avez besoin de soutien en finance, relations, bonheur ou positivité – c'est un excellent point de départ."</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Viviane Schickle, C. Creator & Traveler</p>
-                    </li>
-
-                    <li class="testimonial-card text-left" aria-hidden="true">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"This book helped me reflect on my past decisions and motivated me to be more decisive. A great read… motivated me to be more decisive in achieving my goals."</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Ce livre m'a aidé à réfléchir sur mes décisions passées et m'a motivé à être plus décisif. Une excellente lecture… m'a motivé à être plus décisif pour atteindre mes objectifs."</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Didier Rudakenga, Eng. MBA</p>
-                    </li>
-
-                    <li class="testimonial-card text-left" aria-hidden="true">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Wow 🤩 what amazing work you've done! ...it's authentic, real, and there are great tools to help other people. Bravo!😊"</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Wow 🤩 quel travail incroyable tu as fait ! ...c'est authentique, réel, et il y a de super outils pour aider les autres. Bravo !😊"</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Katherine Sutherland, Traveler</p>
-                    </li>
-
-                    <li class="testimonial-card text-left" aria-hidden="true">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Your book is a beautiful proof of your strength and courage. You've turned a difficult challenge into a simple, motivating, and inspiring message."</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Ton livre est une belle preuve de ta force et de ton courage. Tu as transformé un défi difficile en un message simple, motivant et inspirant."</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Mayssa B.</p>
-                    </li>
-
-                    <li class="testimonial-card text-left" aria-hidden="true">
-                        <p data-lang="en" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Written simply but straight to the point! Everybody can relate."</p>
-                        <p data-lang="fr" class="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">"Écrit simplement mais droit au but ! Tout le monde peut s'y reconnaître."</p>
-                        <p class="font-bold text-white text-sm sm:text-base">Annie Phonsamreth, Editor</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- === END: "SOCIAL PROOF ENGINE" === -->
-
-        <!-- Region Footer -->
-        <div class="region-footer px-4" style="font-family: 'Inter', sans-serif !important; text-align: center; font-size: 0.875rem; color: #9CA3AF; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #374151;">
-            <p data-lang="en" style="font-weight: 600; margin-bottom: 0.75rem; color: #D1D5DB;">Region:</p>
-            <p data-lang="fr" style="font-weight: 600; margin-bottom: 0.75rem; color: #D1D5DB;">Région :</p>
-            
-            <div class="links" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                <a href="https://survivebackpacking.com/en-cad/" style="text-decoration: underline; color: #9CA3AF;">
-                    <span data-lang-inline="en">🇨🇦 English (Canada)</span>
-                    <span data-lang-inline="fr">🇨🇦 English (Canada)</span>
-                </a>
-                <span style="color: #374151;">|</span>
-                <a href="https://survivebackpacking.com/fr-01/" style="text-decoration: underline; color: #9CA3AF;">
-                    <span data-lang-inline="en">🇨🇦 Français (Canada)</span>
-                    <span data-lang-inline="fr">🇨🇦 Français (Canada)</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Footer Copyright -->
-        <p data-lang="en" class="text-xs text-gray-500 mt-12 sm:mt-16 px-4 text-center">
-            🇨🇦 © 2025 Kompul. All rights reserved. 🇨🇦
-        </p>
-        <p data-lang="fr" class="text-xs text-gray-500 mt-12 sm:mt-16 px-4 text-center">
-            🇨🇦 © 2025 Kompul. Tous droits réservés. 🇨🇦
-        </p>
     </div>
 
-    <!-- === BILINGUAL SCRIPT === -->
     <script>
-        // 1. Define the default language
         let currentLang = 'en';
+        const userLang = navigator.language || navigator.userLanguage;
 
-        // 2. Get the user's browser language
-        const userLang = navigator.language || navigator.userLanguage; 
-
-        // 3. Auto-detect and set French for our primary target market
-        if (userLang.startsWith('fr')) {
-            currentLang = 'fr';
-        }
-
-        // 4a. Define destinations for different languages
-        const destinations = {
-            en: {
-                app: 'https://app.kompul.com?signup=true', // English signup page (direct to signup)
-                mission: 'https://survivebackpacking.com/gta-early/'
-            },
-            fr: {
-                app: 'https://app.kompul.com?lang=fr&signup=true', // French signup page with language detection
-                mission: 'https://survivebackpacking.com/fr-01/' // French landing page URL
-            }
+        // Destinations
+        const links = {
+            en: { mission: 'https://survivebackpacking.com/gta-early/', app: 'https://app.kompul.com?signup=true' },
+            fr: { mission: 'https://survivebackpacking.com/frqc/', app: 'https://app.kompul.com?lang=fr&signup=true' }
         };
 
-        // 4b. Function to update links based on language
-        function updateLinks(lang) {
-            const appBtn = document.getElementById('btn-launch-app');
-            const missionBtn = document.getElementById('btn-mission');
-            
-            if (lang === 'fr') {
-                if (appBtn) appBtn.href = destinations.fr.app;
-                if (missionBtn) missionBtn.href = destinations.fr.mission;
-            } else {
-                if (appBtn) appBtn.href = destinations.en.app;
-                if (missionBtn) missionBtn.href = destinations.en.mission;
-            }
-        }
-
-        // 5. Function to set the active language
         function setLanguage(lang) {
             currentLang = lang;
             
-            // Toggle active state for buttons
+            // Toggle Buttons
             document.getElementById('lang-en').classList.toggle('active', lang === 'en');
             document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
 
-            // Show/hide block content
+            // Toggle Text Content
             document.querySelectorAll('[data-lang]').forEach(el => {
                 el.classList.toggle('active', el.getAttribute('data-lang') === lang);
             });
-
-            // Show/hide inline content
             document.querySelectorAll('[data-lang-inline]').forEach(el => {
                 el.classList.toggle('active', el.getAttribute('data-lang-inline') === lang);
             });
 
-            // Update links based on language
-            updateLinks(lang);
-
-            // Optional: Store preference
-            // localStorage.setItem('kompul-lang', lang);
+            // Update Links
+            document.getElementById('btn-launch-app').href = links[lang].app;
+            document.getElementById('btn-mission').href = links[lang].mission;
         }
 
-        // 6. Run the function on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Optional: Check if user has a saved preference
-            // const savedLang = localStorage.getItem('kompul-lang');
-            // setLanguage(savedLang || currentLang);
-            
-            setLanguage(currentLang); // Run auto-detection
-
-            // 7. Handle touch events for testimonial scroller (mobile)
-            const scroller = document.getElementById('testimonial-scroller');
-            const scrollerInner = document.getElementById('scroller-inner');
-            
-            if (scroller && scrollerInner) {
-                // Pause on touch start
-                scroller.addEventListener('touchstart', () => {
-                    scrollerInner.classList.add('paused');
-                });
-                
-                // Resume on touch end
-                scroller.addEventListener('touchend', () => {
-                    scrollerInner.classList.remove('paused');
-                });
-                
-                // Also handle touch cancel (if user swipes away)
-                scroller.addEventListener('touchcancel', () => {
-                    scrollerInner.classList.remove('paused');
-                });
-            }
-        });
+        // Init
+        if (userLang.startsWith('fr')) { setLanguage('fr'); } else { setLanguage('en'); }
     </script>
 </body>
 </html>
-
